@@ -12,10 +12,11 @@ from django_facebook.utils import get_registration_backend, get_form_class, \
     get_profile_model, to_bool, get_user_model, get_instance_for,\
     get_user_attribute, try_get_profile, get_model_for_attribute,\
     get_instance_for_attribute, update_user_attributes
-from random import randint
 import logging
 import sys
 import urllib
+import secrets
+
 try:
     import urllib2
 except ImportError:
@@ -227,7 +228,7 @@ def _register_user(request, facebook, profile_callback=None,
     if request.POST.get('force_registration_hard') or \
             request.GET.get('force_registration_hard'):
         data['email'] = data['email'].replace(
-            '@', '+test%s@' % randint(0, 1000000000))
+            '@', '+test%s@' % secrets.SystemRandom().randint(0, 1000000000))
         
     if not data['email']:
         data['email'] = '%s@facebook.com' % data['username'] 

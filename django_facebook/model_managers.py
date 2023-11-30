@@ -2,12 +2,13 @@ from django.db.models.query_utils import Q
 from django.core.cache import cache
 from django.db import models
 import operator
-import random
 from datetime import timedelta
 from django_facebook.utils import compatible_datetime as datetime
 from django.contrib.contenttypes.models import ContentType
 import logging
 from open_facebook.exceptions import OAuthException, UnsupportedDeleteRequest
+import secrets
+
 logger = logging.getLogger(__name__)
 
 
@@ -59,7 +60,7 @@ class FacebookUserManager(models.Manager):
         random_limit = min(len(non_members), 3)
         random_facebook_users = []
         if random_limit:
-            random_facebook_users = random.sample(non_members, random_limit)
+            random_facebook_users = secrets.SystemRandom().sample(non_members, random_limit)
 
         return random_facebook_users
 
