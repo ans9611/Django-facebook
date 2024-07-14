@@ -68,7 +68,7 @@ MEDIA_ROOT = os.path.join(BASE_ROOT, 'media/')
 STATICFILES_ROOT = os.path.join(BASE_ROOT, 'static/')
 
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
