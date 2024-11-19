@@ -281,3 +281,4 @@ elif MODE == 'userena':
     )
 
 FACEBOOK_OG_SHARE_DB_TABLE = 'django_facebook_open_graph_share'
+SESSION_COOKIE_SECURE = True
