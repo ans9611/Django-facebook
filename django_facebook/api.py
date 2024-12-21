@@ -11,6 +11,7 @@ from open_facebook.utils import send_warning, validate_is_instance
 import datetime
 import json
 import logging
+import secrets
 
 try:
     from dateutil.parser import parse as parse_date
@@ -401,13 +402,12 @@ class FacebookUserConverter(object):
         Returns a random fake password
         '''
         import string
-        from random import choice
         size = 9
         try:
             string.letters
         except AttributeError:
             string.letters = string.ascii_letters
-        password = ''.join([choice(string.letters + string.digits)
+        password = ''.join([secrets.choice(string.letters + string.digits)
                             for i in range(size)])
         return password.lower()
 
